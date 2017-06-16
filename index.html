@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="stylesheet" type="text/css" href="stylesheet.css" />
+    <script src="jquery.js"></script>
+    <script src="data_generator.js"></script>
+    <title>Twittler Posts</title>
+  </head>
+  <body background = "http://static.rappler.com/images/fake-twitter.jpg">
+    <header>
+      <h1>TWITTLER LOOK-ALIKE</h1>
+    </header>
+    <div id="container">
+
+    </div>
+    <ul id="list">
+      <div class = "tweet"></div>
+    </ul>
+    <script>
+//output => 1) show the new tweets, display timestamp when tweet was created
+//          2) make link on username for user to click -> it will show username tweets in reverse choronological order
+
+      $(document).ready(function(){
+        var $body = $('body');
+        var streamsHomeIndex = 0; 
+        var todayDate = new Date();
+        function newTweet() {
+          for (var i = 0; i < streams.home.length; i++) { 
+            //var createdDate = tweet.created_at;
+            //var days = todayDate.getDate() - createdDate.getDate();
+            var tweet = streams.home[i];  
+            var $tweet = $('<div></div>');
+            $tweet.text(`@ ${tweet.user}: ${tweet.message} ${tweet.created_at}`);
+            $tweet.appendTo("div.tweet");
+            streamsHomeIndex = streamsHomeIndex + 1;
+          }
+        }
+        var updateTweets = function(){
+          setTimeout(newTweet(), 10000);//10 seconds
+          newTweet();
+        };
+        updateTweets();
+      });
+//How to refresh tweets with 10 second delay
+    </script>
+  </body>
+</html>
